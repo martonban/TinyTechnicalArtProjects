@@ -3,11 +3,16 @@
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 
+uniform float timeFactor = 0.2f;
+uniform vec2 amplitude = vec2(10.0f, 5.0f);
+
 void vertex() {
-	VERTEX.x += cos(TIME + VERTEX.x + VERTEX.y) * 20.0;
-	VERTEX.y += sin(TIME + VERTEX.y + VERTEX.x) * 20.0;
+	VERTEX.x += cos(TIME * timeFactor + VERTEX.x + VERTEX.y) * amplitude.x;
+	VERTEX.y += sin(TIME * timeFactor + VERTEX.y + VERTEX.x) * amplitude.y;
 
 }"
 
 [resource]
 shader = SubResource( 1 )
+shader_param/timeFactor = 2.0
+shader_param/amplitude = Vector2( 10, 5 )
