@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Water Shaders/water.gd" type="Script" id=1]
+[ext_resource path="res://Water Shaders/textures/water_diffuse.png" type="Texture" id=3]
+
+[node name="Water" type="Sprite"]
+use_parent_material = true
+scale = Vector2( 4.00781, 2.33984 )
+texture = ExtResource( 3 )
+centered = false
+script = ExtResource( 1 )
+
+[connection signal="item_rect_changed" from="." to="." method="calculate_aspect_ratio"]
