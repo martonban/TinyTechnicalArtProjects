@@ -24,6 +24,21 @@ void fragment() {
 This is a fregment shader. Frament shader is a type of shader where the GPU 
 
 
+
+```
+shader_type canvas_item;
+
+uniform float aspect_ratio = 0.5;
+uniform vec2 tiled_factor = vec2(5.0, 5.0);
+
+void fragment() {
+	vec2 tiled_uvs = UV  * tiled_factor;
+	tiled_uvs.y *= aspect_ratio;
+	
+	COLOR = texture(TEXTURE, tiled_uvs);
+}
+```
+
 <h2>Resources</h2>
 If you want to know more about those topics I touched in this post:
 <ul>
