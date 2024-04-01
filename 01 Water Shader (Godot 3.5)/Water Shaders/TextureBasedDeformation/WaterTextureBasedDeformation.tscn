@@ -7,7 +7,7 @@
 [node name="Water" type="Sprite"]
 material = ExtResource( 2 )
 use_parent_material = true
-scale = Vector2( 4.00781, 2.33984 )
+scale = Vector2( 3.98828, 2.34375 )
 texture = ExtResource( 3 )
 centered = false
 script = ExtResource( 1 )
