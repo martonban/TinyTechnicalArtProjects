@@ -25,6 +25,9 @@ This is a fregment shader. Frament shader is a type of shader where the GPU
 
 
 <h2>Resources</h2>
+If you want to know more about those topics I touched in this post:
 <ul>
-    <li><a href="https://www.youtube.com/watch?v=xoyk_A0RSpI&list=PLhqJJNjsQ7KHqNMYmTwtsYTeTrqrRP_fP&index=1">Tutorial Series</li>
+    <li><a href="https://www.youtube.com/watch?v=xoyk_A0RSpI&list=PLhqJJNjsQ7KHqNMYmTwtsYTeTrqrRP_fP&index=1">Tutorial Series</a></li>
+    <li><a href="https://www.khronos.org/opengl/wiki/Fragment_Shader">Fragment Shader</a></li>
+	    
 </ul>
