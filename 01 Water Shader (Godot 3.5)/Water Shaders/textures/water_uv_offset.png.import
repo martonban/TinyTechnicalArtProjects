@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/light.png-b5785f0b1331e8db53eaa747a6aa5a42.stex"
+path="res://.import/water_uv_offset.png-e52fc010484fe9efb0916877406d42fd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://water/textures/light.png"
-dest_files=[ "res://.import/light.png-b5785f0b1331e8db53eaa747a6aa5a42.stex" ]
+source_file="res://Water Shaders/textures/water_uv_offset.png"
+dest_files=[ "res://.import/water_uv_offset.png-e52fc010484fe9efb0916877406d42fd.stex" ]
 
 [params]
 
@@ -18,8 +18,8 @@ compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=0
-flags/repeat=0
+compress/normal_map=1
+flags/repeat=1
 flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false

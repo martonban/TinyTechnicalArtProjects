@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/water_uv_offset.png-88b4034d88cb222175e32d087f08472a.stex"
+path="res://.import/water_diffuse.png-0feac1c3ec84c3bdd3136dd8652890eb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://water/textures/water_uv_offset.png"
-dest_files=[ "res://.import/water_uv_offset.png-88b4034d88cb222175e32d087f08472a.stex" ]
+source_file="res://Water Shaders/textures/water_diffuse.png"
+dest_files=[ "res://.import/water_diffuse.png-0feac1c3ec84c3bdd3136dd8652890eb.stex" ]
 
 [params]
 
