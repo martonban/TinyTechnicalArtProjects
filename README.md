@@ -5,4 +5,4 @@ This repository is contain all of mine little graphics project where I'll pick a
 In this section I'll create multiple shader solutions to elevate a game visual.
 
 <h2>Water Shaders in 2D (Godot 3.5)</h2>
-<a href="01 Water Shader (Godot 3.5)/README.md">Blogpost</a>
+<a href="[01 Water Shader (Godot 3.5)/README.md](https://github.com/martonban/GraphicsDemosGodot/wiki/01-%E2%80%90-Water-Shader-in-2D)">Blogpost</a>
