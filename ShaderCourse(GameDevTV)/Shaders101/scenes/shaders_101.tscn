@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://dj2dgkj66p557"]
+[gd_scene load_steps=5 format=3 uid="uid://dj2dgkj66p557"]
 
 [ext_resource type="Shader" path="res://shaders/shaders_101.glsl.gdshader" id="1_3ffus"]
+[ext_resource type="Script" path="res://scripts/shader_101.gd" id="1_csuwg"]
 [ext_resource type="Texture2D" uid="uid://cfw6mtmldd3u" path="res://icon.svg" id="1_ophj7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rnafs"]
 shader = ExtResource("1_3ffus")
 
 [node name="Shaders101" type="Node2D"]
+script = ExtResource("1_csuwg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_rnafs")
