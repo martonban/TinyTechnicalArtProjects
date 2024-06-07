@@ -1,10 +1,16 @@
-[gd_scene load_steps=31 format=3 uid="uid://cf8ow35myt7tq"]
+[gd_scene load_steps=36 format=3 uid="uid://cf8ow35myt7tq"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ticyv"]
+[ext_resource type="Shader" path="res://shaders/flash.gdshader" id="2_48k6a"]
 [ext_resource type="Texture2D" uid="uid://crl8amfcmjsrx" path="res://assets/character/mask_dude/Idle (32x32).png" id="2_lbaly"]
 [ext_resource type="Texture2D" uid="uid://14ay38m416a8" path="res://assets/character/mask_dude/Fall (32x32).png" id="2_v5u6i"]
 [ext_resource type="Texture2D" uid="uid://4stahljyoht6" path="res://assets/character/mask_dude/Run (32x32).png" id="3_jv62s"]
 [ext_resource type="Texture2D" uid="uid://upvi5yh5werj" path="res://assets/character/mask_dude/Jump (32x32).png" id="4_s7tv2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yq74l"]
+shader = ExtResource("2_48k6a")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_pct = 0.5
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3kfll"]
 atlas = ExtResource("2_lbaly")
@@ -199,11 +205,49 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o0ra8"]
 size = Vector2(38, 71)
 
+[sub_resource type="Animation" id="Animation_j2qwd"]
+resource_name = "flash"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_pct")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.5, 0.0, 0.5, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_m066k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_pct")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5afeo"]
+_data = {
+"RESET": SubResource("Animation_m066k"),
+"flash": SubResource("Animation_j2qwd")
+}
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_ticyv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 100
+material = SubResource("ShaderMaterial_yq74l")
 position = Vector2(0, -48)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_sst3s")
@@ -216,3 +260,8 @@ shape = SubResource("RectangleShape2D_o0ra8")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -150)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5afeo")
+}
