@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://bw86fsv6rvi5h"]
+[gd_scene load_steps=12 format=3 uid="uid://bw86fsv6rvi5h"]
 
 [ext_resource type="Script" path="res://scripts/common_techniques.gd" id="1_0ugy3"]
 [ext_resource type="Texture2D" uid="uid://dw27ks2iy6r18" path="res://assets/other/Terrain (16x16).png" id="2_4ntks"]
 [ext_resource type="PackedScene" uid="uid://cf8ow35myt7tq" path="res://scenes/player.tscn" id="2_ttseq"]
 [ext_resource type="Shader" path="res://shaders/scrolling_shader.gdshader" id="4_0qjfg"]
 [ext_resource type="Texture2D" uid="uid://c4m2ljq1ynnik" path="res://assets/background/Brown.png" id="4_hswwd"]
+[ext_resource type="Texture2D" uid="uid://b4cgytxlrs4ak" path="res://assets/other/End.png" id="6_eeb3d"]
+[ext_resource type="Shader" path="res://shaders/scenesgrayscale.gdshader" id="6_oqu2v"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uudt7"]
 shader = ExtResource("4_0qjfg")
@@ -460,6 +462,9 @@ texture = ExtResource("2_4ntks")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_sehxt")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gc8t3"]
+shader = ExtResource("6_oqu2v")
+
 [node name="CommonTechniques" type="Node2D"]
 script = ExtResource("1_0ugy3")
 
@@ -481,3 +486,9 @@ layer_0/tile_data = PackedInt32Array(655361, 458752, 4, 655362, 458752, 4, 65536
 
 [node name="Player" parent="." instance=ExtResource("2_ttseq")]
 position = Vector2(575, 314)
+
+[node name="Grayscale" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_gc8t3")
+position = Vector2(272, 417)
+scale = Vector2(2, 2)
+texture = ExtResource("6_eeb3d")
