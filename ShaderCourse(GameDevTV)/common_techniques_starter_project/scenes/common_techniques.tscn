@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bw86fsv6rvi5h"]
+[gd_scene load_steps=26 format=3 uid="uid://bw86fsv6rvi5h"]
 
 [ext_resource type="Script" path="res://scripts/common_techniques.gd" id="1_0ugy3"]
 [ext_resource type="Texture2D" uid="uid://dw27ks2iy6r18" path="res://assets/other/Terrain (16x16).png" id="2_4ntks"]
@@ -11,6 +11,8 @@
 [ext_resource type="Shader" path="res://shaders/screen_reading.gdshader" id="9_d76v7"]
 [ext_resource type="Texture2D" uid="uid://w67qu37jpvs2" path="res://icon.svg" id="9_gmf4x"]
 [ext_resource type="Shader" path="res://shaders/dissolve.gdshader" id="11_vc0ei"]
+[ext_resource type="Shader" path="res://shaders/masking.gdshader" id="12_6n38j"]
+[ext_resource type="Texture2D" uid="uid://bsfpayw3uuh6a" path="res://assets/other/mask.png" id="13_o4bcs"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uudt7"]
 shader = ExtResource("4_0qjfg")
@@ -492,6 +494,10 @@ noise = SubResource("FastNoiseLite_l8uqg")
 shader = ExtResource("11_vc0ei")
 shader_parameter/noise_tex = SubResource("NoiseTexture2D_mo6ix")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ohan0"]
+shader = ExtResource("12_6n38j")
+shader_parameter/maks_tex = ExtResource("13_o4bcs")
+
 [node name="CommonTechniques" type="Node2D"]
 script = ExtResource("1_0ugy3")
 
@@ -576,4 +582,18 @@ offset_top = -36.0
 offset_right = 38.0
 offset_bottom = -12.0
 text = "Default"
+tab_size = 2
+
+[node name="Mask" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ohan0")
+position = Vector2(-420, 416)
+scale = Vector2(2, 2)
+texture = ExtResource("6_eeb3d")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Mask"]
+offset_left = -30.0
+offset_top = -36.0
+offset_right = 55.0
+offset_bottom = -12.0
+text = "Masking"
 tab_size = 2
