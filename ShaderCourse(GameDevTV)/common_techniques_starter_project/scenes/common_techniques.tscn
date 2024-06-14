@@ -552,7 +552,7 @@ texture = ExtResource("9_gmf4x")
 
 [node name="Dissolve" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_5hmyu")
-position = Vector2(710, 416)
+position = Vector2(703, 416)
 scale = Vector2(2, 2)
 texture = ExtResource("6_eeb3d")
 
