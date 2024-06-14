@@ -504,11 +504,11 @@ script = ExtResource("1_0ugy3")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -100
 
-[node name="ScrollingBackground" type="Sprite2D" parent="CanvasLayer"]
+[node name="ScrollingBackground" type="Sprite2D" parent="."]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_uudt7")
-position = Vector2(843, 657)
-scale = Vector2(123.625, 85.5313)
+position = Vector2(-469.5, 250.999)
+scale = Vector2(82.6094, 72.8438)
 texture = ExtResource("4_hswwd")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -552,8 +552,8 @@ tab_size = 2
 [node name="ScreenReading" type="Sprite2D" parent="."]
 z_index = 100
 material = SubResource("ShaderMaterial_mh4v2")
-position = Vector2(1300.61, 727.434)
-scale = Vector2(-5.58859, 16.6621)
+position = Vector2(1820.03, 382)
+scale = Vector2(-5.52658, 15.9947)
 texture = ExtResource("9_gmf4x")
 
 [node name="Dissolve" type="Sprite2D" parent="."]
