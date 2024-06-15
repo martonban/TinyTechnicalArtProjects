@@ -547,10 +547,10 @@ layer_0/tile_data = PackedInt32Array(655361, 458752, 4, 655362, 458752, 4, 65536
 position = Vector2(-1763, 368)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = -1650.0
-offset_top = 244.0
-offset_right = -1408.0
-offset_bottom = 296.0
+offset_left = -1657.0
+offset_top = 233.0
+offset_right = -1415.0
+offset_bottom = 285.0
 scale = Vector2(2, 2)
 text = "Simple Shader Effects"
 tab_size = 2
