@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bw86fsv6rvi5h"]
+[gd_scene load_steps=32 format=3 uid="uid://bw86fsv6rvi5h"]
 
 [ext_resource type="Script" path="res://scripts/common_techniques.gd" id="1_0ugy3"]
 [ext_resource type="Texture2D" uid="uid://dw27ks2iy6r18" path="res://assets/other/Terrain (16x16).png" id="2_4ntks"]
@@ -13,6 +13,7 @@
 [ext_resource type="Shader" path="res://shaders/dissolve.gdshader" id="11_vc0ei"]
 [ext_resource type="Shader" path="res://shaders/masking.gdshader" id="12_6n38j"]
 [ext_resource type="Texture2D" uid="uid://bsfpayw3uuh6a" path="res://assets/other/mask.png" id="13_o4bcs"]
+[ext_resource type="Shader" path="res://shaders/distortion.gdshader" id="14_gbpad"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uudt7"]
 shader = ExtResource("4_0qjfg")
@@ -498,6 +499,31 @@ shader_parameter/noise_tex = SubResource("NoiseTexture2D_mo6ix")
 shader = ExtResource("12_6n38j")
 shader_parameter/maks_tex = ExtResource("13_o4bcs")
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lccjw"]
+seed = 3
+frequency = 0.0142
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yj7vj"]
+seamless = true
+noise = SubResource("FastNoiseLite_lccjw")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ackhs"]
+seed = 3
+frequency = 0.0071
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hcrwb"]
+seamless = true
+noise = SubResource("FastNoiseLite_ackhs")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fu43u"]
+shader = ExtResource("14_gbpad")
+shader_parameter/offset1 = Vector2(0.1, 0.1)
+shader_parameter/offset2 = Vector2(0.1, 0.1)
+shader_parameter/distortaion_strength = 0.02
+shader_parameter/noise_tex_1 = SubResource("NoiseTexture2D_yj7vj")
+shader_parameter/noise_tex_2 = SubResource("NoiseTexture2D_hcrwb")
+
 [node name="CommonTechniques" type="Node2D"]
 script = ExtResource("1_0ugy3")
 
@@ -507,8 +533,8 @@ layer = -100
 [node name="ScrollingBackground" type="Sprite2D" parent="."]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_uudt7")
-position = Vector2(-469.5, 250.999)
-scale = Vector2(82.6094, 72.8438)
+position = Vector2(-1028.5, 250.999)
+scale = Vector2(65.1406, 72.8438)
 texture = ExtResource("4_hswwd")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -519,6 +545,15 @@ layer_0/tile_data = PackedInt32Array(655361, 458752, 4, 655362, 458752, 4, 65536
 
 [node name="Player" parent="." instance=ExtResource("2_ttseq")]
 position = Vector2(-1763, 368)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -1650.0
+offset_top = 244.0
+offset_right = -1408.0
+offset_bottom = 296.0
+scale = Vector2(2, 2)
+text = "Simple Shader Effects"
+tab_size = 2
 
 [node name="Grayscale" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_gc8t3")
@@ -552,8 +587,8 @@ tab_size = 2
 [node name="ScreenReading" type="Sprite2D" parent="."]
 z_index = 100
 material = SubResource("ShaderMaterial_mh4v2")
-position = Vector2(1820.03, 382)
-scale = Vector2(-5.52658, 15.9947)
+position = Vector2(586.246, 354)
+scale = Vector2(-7.37417, 15.9947)
 texture = ExtResource("9_gmf4x")
 
 [node name="Dissolve" type="Sprite2D" parent="."]
@@ -597,3 +632,25 @@ offset_right = 55.0
 offset_bottom = -12.0
 text = "Masking"
 tab_size = 2
+
+[node name="DestortionBackgroundCup" type="Sprite2D" parent="."]
+position = Vector2(-208, 416)
+scale = Vector2(2, 2)
+texture = ExtResource("6_eeb3d")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="DestortionBackgroundCup"]
+offset_left = -42.0
+offset_top = -39.5
+offset_right = 59.0
+offset_bottom = -15.5
+text = "Distortion
+"
+tab_size = 2
+
+[node name="Distortion" type="Sprite2D" parent="."]
+z_index = 1000
+texture_repeat = 2
+material = SubResource("ShaderMaterial_fu43u")
+position = Vector2(-212, 428.5)
+scale = Vector2(1, 0.804688)
+texture = ExtResource("9_gmf4x")
