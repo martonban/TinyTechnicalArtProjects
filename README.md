@@ -1,8 +1,8 @@
 # Graphics Demos
-This repository is contain all of mine little graphics project where I'll pick a random topic and I'll make a little demo using raylib or Godot Engine to implement it. Every project will have a README.md as a blog post to see how I did it, and give resources.
+This repository is contain all of my simpler "Technical Artist" projects in Godot. In the future I want to implement some advanced shading/ graphics techniques in godot before my own renderer.
 
-# Beginnier
-In this section I'll create multiple shader solutions to elevate a game visual.
+# Beginnig
+Before I statrted this journey I bought a Godot shader course. The folder called "ShaderCourse(GameDevTV)" contain all of the tutorial code.
 
-<h2>Water Shaders in 2D (Godot 3.5)</h2>
-<a href="https://github.com/martonban/GraphicsDemosGodot/wiki/01-%E2%80%90-Water-Shader-in-2D">Blogpost</a>
+# Practice
+The folders called "2D Shaders Collection" and "3D Shaders Collection" is a scene where I did some more tutorial shaders and my own attempts. 
