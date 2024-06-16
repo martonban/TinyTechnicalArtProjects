@@ -533,8 +533,8 @@ layer = -100
 [node name="ScrollingBackground" type="Sprite2D" parent="."]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_uudt7")
-position = Vector2(-1028.5, 250.999)
-scale = Vector2(65.1406, 72.8438)
+position = Vector2(-1022.5, 250.999)
+scale = Vector2(65.3281, 72.8438)
 texture = ExtResource("4_hswwd")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -587,8 +587,8 @@ tab_size = 2
 [node name="ScreenReading" type="Sprite2D" parent="."]
 z_index = 100
 material = SubResource("ShaderMaterial_mh4v2")
-position = Vector2(586.246, 354)
-scale = Vector2(-7.37417, 15.9947)
+position = Vector2(591.802, 354)
+scale = Vector2(-7.46098, 15.9947)
 texture = ExtResource("9_gmf4x")
 
 [node name="Dissolve" type="Sprite2D" parent="."]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://lg3n8vkn5qi4"]
+[gd_scene load_steps=9 format=3 uid="uid://lg3n8vkn5qi4"]
 
 [ext_resource type="Script" path="res://scripts/spatial_shaders.gd" id="1_db346"]
 [ext_resource type="PackedScene" uid="uid://twg0tri4g6hr" path="res://scenes/camera_controller.tscn" id="1_p4cbf"]
+[ext_resource type="Shader" path="res://shaders/spatial_shaders.gdshader" id="3_sgqfn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7jfiy"]
 
@@ -13,6 +14,11 @@ background_mode = 2
 sky = SubResource("Sky_joj37")
 
 [sub_resource type="SphereMesh" id="SphereMesh_5gdlg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qur8f"]
+render_priority = 0
+shader = ExtResource("3_sgqfn")
+shader_parameter/sphere_color = Color(1, 1, 1, 1)
 
 [node name="SpatialShaders" type="Node3D"]
 script = ExtResource("1_db346")
@@ -26,5 +32,6 @@ transform = Transform3D(0.80536, 0.463107, -0.370038, 0, 0.624234, 0.781237, 0.5
 [node name="CameraController" parent="." instance=ExtResource("1_p4cbf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.85299)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="FirstShader" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_5gdlg")
+surface_material_override/0 = SubResource("ShaderMaterial_qur8f")
