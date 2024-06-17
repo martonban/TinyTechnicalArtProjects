@@ -1,10 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://lg3n8vkn5qi4"]
+[gd_scene load_steps=19 format=3 uid="uid://lg3n8vkn5qi4"]
 
 [ext_resource type="Script" path="res://scripts/spatial_shaders.gd" id="1_db346"]
 [ext_resource type="PackedScene" uid="uid://twg0tri4g6hr" path="res://scenes/camera_controller.tscn" id="1_p4cbf"]
 [ext_resource type="Shader" path="res://shaders/spatial_shaders.gdshader" id="3_sgqfn"]
 [ext_resource type="Shader" path="res://shaders/texture_shader.gdshader" id="4_l83hq"]
 [ext_resource type="Texture2D" uid="uid://dq50v6s4drwd1" path="res://icon.svg" id="5_pyfjg"]
+[ext_resource type="Shader" path="res://shaders/pbr.gdshader" id="6_bf8xv"]
+[ext_resource type="Shader" path="res://shaders/cartoon.gdshader" id="7_46mmw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7jfiy"]
 
@@ -29,6 +31,22 @@ render_priority = 0
 shader = ExtResource("4_l83hq")
 shader_parameter/base_color_texture = ExtResource("5_pyfjg")
 
+[sub_resource type="SphereMesh" id="SphereMesh_qp7xy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ji7nt"]
+render_priority = 0
+shader = ExtResource("6_bf8xv")
+shader_parameter/base_color = Color(0, 0.65098, 1, 1)
+shader_parameter/metalic_value = 0.31
+shader_parameter/roughness_value = 0.067
+
+[sub_resource type="SphereMesh" id="SphereMesh_phpfp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_auein"]
+render_priority = 0
+shader = ExtResource("7_46mmw")
+shader_parameter/base_color = Color(0, 0.65098, 1, 1)
+
 [node name="SpatialShaders" type="Node3D"]
 script = ExtResource("1_db346")
 
@@ -49,3 +67,13 @@ surface_material_override/0 = SubResource("ShaderMaterial_qur8f")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.30708, 0, 0)
 mesh = SubResource("SphereMesh_mqfmj")
 surface_material_override/0 = SubResource("ShaderMaterial_2dp7f")
+
+[node name="PBR" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.73674, 0, 0)
+mesh = SubResource("SphereMesh_qp7xy")
+surface_material_override/0 = SubResource("ShaderMaterial_ji7nt")
+
+[node name="Cartoon" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.16763, 0, 0)
+mesh = SubResource("SphereMesh_phpfp")
+surface_material_override/0 = SubResource("ShaderMaterial_auein")
