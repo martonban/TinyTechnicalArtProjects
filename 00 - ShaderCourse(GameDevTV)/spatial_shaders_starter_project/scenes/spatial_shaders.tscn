@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://lg3n8vkn5qi4"]
+[gd_scene load_steps=29 format=3 uid="uid://lg3n8vkn5qi4"]
 
 [ext_resource type="Script" path="res://scripts/spatial_shaders.gd" id="1_db346"]
 [ext_resource type="PackedScene" uid="uid://twg0tri4g6hr" path="res://scenes/camera_controller.tscn" id="1_p4cbf"]
@@ -8,6 +8,7 @@
 [ext_resource type="Shader" path="res://shaders/pbr.gdshader" id="6_bf8xv"]
 [ext_resource type="Shader" path="res://shaders/cartoon.gdshader" id="7_46mmw"]
 [ext_resource type="Shader" path="res://shaders/vertex.gdshader" id="8_ihhgl"]
+[ext_resource type="Shader" path="res://shaders/water.gdshader" id="9_beltc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7jfiy"]
 
@@ -54,14 +55,47 @@ shader_parameter/base_color = Color(0, 0.65098, 1, 1)
 render_priority = 0
 shader = ExtResource("8_ihhgl")
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_gvgx7"]
+size = Vector2(5, 5)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_x0fd6"]
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tv2hd"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_x0fd6")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xxhkk"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_42rxg"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_xxhkk")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e33ag"]
+render_priority = 0
+shader = ExtResource("9_beltc")
+shader_parameter/albedo = Color(0.1176, 0.865013, 0.98, 1)
+shader_parameter/direction1 = Vector2(1, 0)
+shader_parameter/direction2 = Vector2(0, 1)
+shader_parameter/scroll_speed1 = 0.03
+shader_parameter/scroll_speed2 = 0.01
+shader_parameter/normal_map_texture = SubResource("NoiseTexture2D_tv2hd")
+shader_parameter/normal_map_texture2 = SubResource("NoiseTexture2D_42rxg")
+
 [node name="SpatialShaders" type="Node3D"]
 script = ExtResource("1_db346")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_b0d0y")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(0.80536, 0.463107, -0.370038, 0, 0.624234, 0.781237, 0.592787, -0.629177, 0.502733, -12.234, 2.31774, -0.181669)
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.80536, 0.463107, -0.370038, 0, 0.624234, 0.781237, 0.592787, -0.629177, 0.502733, 0, 3.69932, 0)
+transform = Transform3D(0.80536, 0.463107, -0.370038, 0, 0.624234, 0.781237, 0.592787, -0.629177, 0.502733, -2.58777, 3.69932, 0)
+visible = false
 
 [node name="CameraController" parent="." instance=ExtResource("1_p4cbf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.85299)
@@ -89,3 +123,8 @@ surface_material_override/0 = SubResource("ShaderMaterial_auein")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.61338, 0, 0)
 mesh = SubResource("SphereMesh_voh0j")
 surface_material_override/0 = SubResource("ShaderMaterial_tff1d")
+
+[node name="Water" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.63247, 0, 0, 0, 1, 0, 0, 0, 1.53535, -11.9463, -0.0159651, -0.0825367)
+mesh = SubResource("PlaneMesh_gvgx7")
+surface_material_override/0 = SubResource("ShaderMaterial_e33ag")
