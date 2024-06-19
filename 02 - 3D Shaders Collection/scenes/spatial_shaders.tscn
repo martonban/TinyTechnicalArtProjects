@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://lg3n8vkn5qi4"]
+
+[ext_resource type="Script" path="res://scripts/spatial_shaders.gd" id="1_db346"]
+[ext_resource type="PackedScene" uid="uid://twg0tri4g6hr" path="res://scenes/camera_controller.tscn" id="1_p4cbf"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7jfiy"]
+
+[sub_resource type="Sky" id="Sky_joj37"]
+sky_material = SubResource("ProceduralSkyMaterial_7jfiy")
+
+[sub_resource type="Environment" id="Environment_b0d0y"]
+background_mode = 2
+sky = SubResource("Sky_joj37")
+
+[sub_resource type="SphereMesh" id="SphereMesh_5gdlg"]
+
+[node name="SpatialShaders" type="Node3D"]
+script = ExtResource("1_db346")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_b0d0y")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.80536, 0.463107, -0.370038, 0, 0.624234, 0.781237, 0.592787, -0.629177, 0.502733, 0, 3.69932, 0)
+
+[node name="CameraController" parent="." instance=ExtResource("1_p4cbf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.85299)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_5gdlg")
