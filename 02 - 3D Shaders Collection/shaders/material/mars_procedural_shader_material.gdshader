@@ -16,6 +16,8 @@ group_uniforms;
 
 void fragment() {
 	
+	
+	
 	vec3 final_color = texture(base_color_noise, UV).rgb;
 	
 	// Base Texture

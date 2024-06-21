@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://lg3n8vkn5qi4"]
+[gd_scene load_steps=14 format=3 uid="uid://lg3n8vkn5qi4"]
 
 [ext_resource type="Script" path="res://scripts/spatial_shaders.gd" id="1_db346"]
 [ext_resource type="PackedScene" uid="uid://twg0tri4g6hr" path="res://scenes/camera_controller.tscn" id="1_p4cbf"]
@@ -15,12 +15,25 @@ sky = SubResource("Sky_joj37")
 
 [sub_resource type="SphereMesh" id="SphereMesh_5gdlg"]
 
+[sub_resource type="Gradient" id="Gradient_icelx"]
+colors = PackedColorArray(0.756863, 0.266667, 0.054902, 1, 0.905882, 0.490196, 0.0666667, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dxlfk"]
+noise_type = 4
+frequency = 0.0576
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gb2pn"]
+seamless = true
+color_ramp = SubResource("Gradient_icelx")
+noise = SubResource("FastNoiseLite_dxlfk")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bxqo0"]
 render_priority = 0
 shader = ExtResource("3_6cg7a")
 shader_parameter/rougness = 0.0
 shader_parameter/specular = 0.0
 shader_parameter/ambient_occlusion = 0.0
+shader_parameter/base_color_noise = SubResource("NoiseTexture2D_gb2pn")
 
 [sub_resource type="SphereMesh" id="SphereMesh_iu8db"]
 
