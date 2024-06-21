@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bw86fsv6rvi5h"]
+[gd_scene load_steps=34 format=3 uid="uid://bw86fsv6rvi5h"]
 
 [ext_resource type="Script" path="res://scripts/common_techniques.gd" id="1_0ugy3"]
 [ext_resource type="Texture2D" uid="uid://dw27ks2iy6r18" path="res://assets/other/Terrain (16x16).png" id="2_4ntks"]
@@ -14,6 +14,7 @@
 [ext_resource type="Shader" path="res://shaders/masking.gdshader" id="12_6n38j"]
 [ext_resource type="Texture2D" uid="uid://bsfpayw3uuh6a" path="res://assets/other/mask.png" id="13_o4bcs"]
 [ext_resource type="Shader" path="res://shaders/distortion.gdshader" id="14_gbpad"]
+[ext_resource type="Shader" path="res://shaders/noises/voronoi_noise.gdshader" id="15_7lio8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uudt7"]
 shader = ExtResource("4_0qjfg")
@@ -524,6 +525,9 @@ shader_parameter/distortaion_strength = 0.02
 shader_parameter/noise_tex_1 = SubResource("NoiseTexture2D_yj7vj")
 shader_parameter/noise_tex_2 = SubResource("NoiseTexture2D_hcrwb")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g8m0v"]
+shader = ExtResource("15_7lio8")
+
 [node name="CommonTechniques" type="Node2D"]
 script = ExtResource("1_0ugy3")
 
@@ -533,8 +537,8 @@ layer = -100
 [node name="ScrollingBackground" type="Sprite2D" parent="."]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_uudt7")
-position = Vector2(-1022.5, 250.999)
-scale = Vector2(65.3281, 72.8438)
+position = Vector2(-213.5, 250.999)
+scale = Vector2(90.6094, 72.8438)
 texture = ExtResource("4_hswwd")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -545,6 +549,15 @@ layer_0/tile_data = PackedInt32Array(655361, 458752, 4, 655362, 458752, 4, 65536
 
 [node name="Player" parent="." instance=ExtResource("2_ttseq")]
 position = Vector2(-1763, 368)
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_left = 1094.0
+offset_top = 181.0
+offset_right = 1253.0
+offset_bottom = 233.0
+scale = Vector2(2, 2)
+text = "Noise Shaders"
+tab_size = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = -1657.0
@@ -654,3 +667,17 @@ material = SubResource("ShaderMaterial_fu43u")
 position = Vector2(-212, 428.5)
 scale = Vector2(1, 0.804688)
 texture = ExtResource("9_gmf4x")
+
+[node name="Voronoi Noise" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_g8m0v")
+position = Vector2(1467, 409)
+texture = ExtResource("9_gmf4x")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Voronoi Noise"]
+offset_left = -63.0
+offset_top = -103.0
+offset_right = 90.0
+offset_bottom = -73.0
+text = "Voronoi Noise
+"
+tab_size = 2

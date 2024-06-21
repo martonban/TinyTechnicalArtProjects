@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Common Techniques"
+config/name="2D Shaders"
 run/main_scene="res://scenes/common_techniques.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
