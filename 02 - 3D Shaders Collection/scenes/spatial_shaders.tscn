@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://lg3n8vkn5qi4"]
+[gd_scene load_steps=11 format=3 uid="uid://lg3n8vkn5qi4"]
 
 [ext_resource type="Script" path="res://scripts/spatial_shaders.gd" id="1_db346"]
 [ext_resource type="PackedScene" uid="uid://twg0tri4g6hr" path="res://scenes/camera_controller.tscn" id="1_p4cbf"]
@@ -15,23 +15,16 @@ sky = SubResource("Sky_joj37")
 
 [sub_resource type="SphereMesh" id="SphereMesh_5gdlg"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_hvcwl"]
-frequency = 0.002
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8kn80"]
-seamless = true
-noise = SubResource("FastNoiseLite_hvcwl")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bxqo0"]
 render_priority = 0
 shader = ExtResource("3_6cg7a")
 shader_parameter/rougness = 0.0
 shader_parameter/specular = 0.0
 shader_parameter/ambient_occlusion = 0.0
-shader_parameter/base_albedo = Color(0.756863, 0.266667, 0.054902, 1)
-shader_parameter/base_noise = SubResource("NoiseTexture2D_8kn80")
 
 [sub_resource type="SphereMesh" id="SphereMesh_iu8db"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5pqle"]
 
 [node name="SpatialShaders" type="Node3D"]
 script = ExtResource("1_db346")
@@ -46,10 +39,11 @@ transform = Transform3D(0.80536, 0.463107, -0.370038, 0, 0.624234, 0.781237, 0.5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.85299)
 
 [node name="MarsMaterial" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.80006e-05, 0.00348321, -0.00022471)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00225401, 0.00132582, 0.000207901)
 mesh = SubResource("SphereMesh_5gdlg")
 surface_material_override/0 = SubResource("ShaderMaterial_bxqo0")
 
 [node name="CrystalMaterial" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
 mesh = SubResource("SphereMesh_iu8db")
+surface_material_override/0 = SubResource("ShaderMaterial_5pqle")

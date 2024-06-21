@@ -7,8 +7,7 @@ group_uniforms Basic_Settings;
 group_uniforms;
 
 group_uniforms Base_Color;
-uniform vec3 base_albedo: source_color;
-uniform sampler2D base_noise: repeat_enable, filter_linear;
+	uniform sampler2D base_color_noise: repeat_enable, filter_linear;
 group_uniforms;
 
 group_uniforms Rock_Settings;
@@ -16,9 +15,11 @@ group_uniforms;
 
 
 void fragment() {
+	
+	vec3 final_color = texture(base_color_noise, UV).rgb;
+	
 	// Base Texture
-
-	ALBEDO = base_albedo;
+	ALBEDO = final_color;
 	ROUGHNESS = rougness;
 	SPECULAR = specular;
 	AO = ambient_occlusion;
