@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://lg3n8vkn5qi4"]
+[gd_scene load_steps=11 format=3 uid="uid://lg3n8vkn5qi4"]
 
 [ext_resource type="Script" path="res://scripts/spatial_shaders.gd" id="1_db346"]
 [ext_resource type="PackedScene" uid="uid://twg0tri4g6hr" path="res://scenes/camera_controller.tscn" id="1_p4cbf"]
 [ext_resource type="Shader" path="res://scenes/raindrop_particle_shader.gdshader" id="3_tk3n5"]
 [ext_resource type="Script" path="res://scripts/ParticleSystemCPU.gd" id="3_tsspp"]
+[ext_resource type="ArrayMesh" uid="uid://c68lxohu6s4cf" path="res://assets/rock/rock.obj" id="5_1wdmb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7jfiy"]
 
@@ -41,3 +42,7 @@ script = ExtResource("3_tsspp")
 number_of_particals = 300
 source = Vector2(0.5, 0.5)
 radius = 0.1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.116983, 0, -0.162219, 0, 0.2, 0, 0.162219, 0, 0.116983, -4.08747, 0, 0)
+mesh = ExtResource("5_1wdmb")
