@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://lg3n8vkn5qi4"]
+[gd_scene load_steps=10 format=3 uid="uid://lg3n8vkn5qi4"]
 
 [ext_resource type="Script" path="res://scripts/spatial_shaders.gd" id="1_db346"]
 [ext_resource type="PackedScene" uid="uid://twg0tri4g6hr" path="res://scenes/camera_controller.tscn" id="1_p4cbf"]
-[ext_resource type="Shader" path="res://shaders/material/mars_procedural_shader_material.gdshader" id="3_6cg7a"]
+[ext_resource type="Shader" path="res://scenes/raindrop_particle_shader.gdshader" id="3_tk3n5"]
+[ext_resource type="Script" path="res://scripts/ParticleSystemCPU.gd" id="3_tsspp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7jfiy"]
 
@@ -13,31 +14,13 @@ sky_material = SubResource("ProceduralSkyMaterial_7jfiy")
 background_mode = 2
 sky = SubResource("Sky_joj37")
 
-[sub_resource type="SphereMesh" id="SphereMesh_5gdlg"]
+[sub_resource type="QuadMesh" id="QuadMesh_t4tfq"]
 
-[sub_resource type="Gradient" id="Gradient_icelx"]
-colors = PackedColorArray(0.756863, 0.266667, 0.054902, 1, 0.905882, 0.490196, 0.0666667, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_dxlfk"]
-noise_type = 4
-frequency = 0.0576
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gb2pn"]
-seamless = true
-color_ramp = SubResource("Gradient_icelx")
-noise = SubResource("FastNoiseLite_dxlfk")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bxqo0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g6ph0"]
 render_priority = 0
-shader = ExtResource("3_6cg7a")
-shader_parameter/rougness = 0.0
-shader_parameter/specular = 0.0
-shader_parameter/ambient_occlusion = 0.0
-shader_parameter/base_color_noise = SubResource("NoiseTexture2D_gb2pn")
-
-[sub_resource type="SphereMesh" id="SphereMesh_iu8db"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5pqle"]
+shader = ExtResource("3_tk3n5")
+shader_parameter/array = null
+shader_parameter/size = 300
 
 [node name="SpatialShaders" type="Node3D"]
 script = ExtResource("1_db346")
@@ -49,14 +32,12 @@ environment = SubResource("Environment_b0d0y")
 transform = Transform3D(0.80536, 0.463107, -0.370038, 0, 0.624234, 0.781237, 0.592787, -0.629177, 0.502733, 0, 3.69932, 0)
 
 [node name="CameraController" parent="." instance=ExtResource("1_p4cbf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.85299)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.03343)
 
-[node name="MarsMaterial" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00225401, 0.00132582, 0.000207901)
-mesh = SubResource("SphereMesh_5gdlg")
-surface_material_override/0 = SubResource("ShaderMaterial_bxqo0")
-
-[node name="CrystalMaterial" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
-mesh = SubResource("SphereMesh_iu8db")
-surface_material_override/0 = SubResource("ShaderMaterial_5pqle")
+[node name="2DParticlesCPU" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_t4tfq")
+surface_material_override/0 = SubResource("ShaderMaterial_g6ph0")
+script = ExtResource("3_tsspp")
+number_of_particals = 300
+source = Vector2(0.5, 0.5)
+radius = 0.1
