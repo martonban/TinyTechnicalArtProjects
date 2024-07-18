@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://lg3n8vkn5qi4"]
+[gd_scene load_steps=20 format=3 uid="uid://lg3n8vkn5qi4"]
 
 [ext_resource type="Script" path="res://scripts/spatial_shaders.gd" id="1_db346"]
 [ext_resource type="PackedScene" uid="uid://twg0tri4g6hr" path="res://scenes/camera_controller.tscn" id="1_p4cbf"]
@@ -29,14 +29,29 @@ shader = ExtResource("3_tk3n5")
 shader_parameter/array = null
 shader_parameter/size = 300
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_upa3v"]
+noise_type = 3
+frequency = 0.0035
+fractal_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wva8f"]
+seamless = true
+as_normal_map = true
+bump_strength = 28.9
+noise = SubResource("FastNoiseLite_upa3v")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nnkac"]
 render_priority = 0
 shader = ExtResource("6_y7imb")
+shader_parameter/wet_percentage = 0.6
+shader_parameter/UV_mapping_scaler = 6.0
+shader_parameter/UV_offset = 6.31
 shader_parameter/color_texture = ExtResource("7_g6jtc")
 shader_parameter/normal_texture = ExtResource("8_wnr6v")
 shader_parameter/rough_texture = ExtResource("9_i10q4")
 shader_parameter/ao_map = ExtResource("7_adse6")
 shader_parameter/arm_map = ExtResource("8_ker2v")
+shader_parameter/noise_textue = SubResource("NoiseTexture2D_wva8f")
 
 [node name="SpatialShaders" type="Node3D"]
 script = ExtResource("1_db346")
@@ -60,9 +75,11 @@ source = Vector2(0.5, 0.5)
 radius = 0.1
 
 [node name="Rock" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.292458, 0, -0.405547, 0, 0.5, 0, 0.405547, 0, 0.292458, -4.08747, 0, 0)
+transform = Transform3D(0.292458, 0, -0.405547, 0, 0.5, 0, 0.405547, 0, 0.292458, -4.0872, 0.0401649, -0.016552)
 mesh = ExtResource("5_1wdmb")
 surface_material_override/0 = SubResource("ShaderMaterial_nnkac")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.02238, 0.212969, 0.93825)
+transform = Transform3D(-0.844309, 0, -0.535856, 0, 1, 0, 0.535856, 0, -0.844309, -3.76597, 0.223845, 2.11291)
+light_color = Color(0.92549, 0.94902, 0.956863, 1)
+light_energy = 2.939
