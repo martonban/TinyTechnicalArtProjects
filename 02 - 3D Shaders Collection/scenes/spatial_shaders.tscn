@@ -43,7 +43,7 @@ noise = SubResource("FastNoiseLite_upa3v")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nnkac"]
 render_priority = 0
 shader = ExtResource("6_y7imb")
-shader_parameter/wet_percentage = 0.6
+shader_parameter/wet_percentage = 2.0
 shader_parameter/UV_mapping_scaler = 6.0
 shader_parameter/UV_offset = 6.31
 shader_parameter/color_texture = ExtResource("7_g6jtc")

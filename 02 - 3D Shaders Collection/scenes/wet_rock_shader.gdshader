@@ -2,7 +2,7 @@ shader_type spatial;
 
 
 group_uniforms Shader_Parameters;
-	uniform float wet_percentage : hint_range(0.0f, 1.f ,0.01f);
+	uniform float wet_percentage : hint_range(0.4f, 2.f ,0.01f);
 group_uniforms;
 
 group_uniforms Textures_Setting;
