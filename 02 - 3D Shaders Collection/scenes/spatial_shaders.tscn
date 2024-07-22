@@ -43,8 +43,8 @@ noise = SubResource("FastNoiseLite_upa3v")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nnkac"]
 render_priority = 0
 shader = ExtResource("6_y7imb")
-shader_parameter/wet_percentage = 2.0
-shader_parameter/dark = 2.5
+shader_parameter/wet_percentage = 0.4
+shader_parameter/dark = 5.0
 shader_parameter/UV_mapping_scaler = 6.0
 shader_parameter/UV_offset = 6.31
 shader_parameter/color_texture = ExtResource("7_g6jtc")
@@ -65,7 +65,7 @@ transform = Transform3D(0.80536, 0.463107, -0.370038, 0, 0.624234, 0.781237, 0.5
 visible = false
 
 [node name="CameraController" parent="." instance=ExtResource("1_p4cbf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.03343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.95358, -0.0316928, 1.07794)
 
 [node name="2DParticlesCPU" type="MeshInstance3D" parent="."]
 mesh = SubResource("QuadMesh_t4tfq")
