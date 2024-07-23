@@ -12,7 +12,7 @@ extends Node3D
 @export var rotation_speed = 120
 
 var camera_rotation:Vector3
-var zoom = 10
+var zoom = 6
 
 @onready var camera = $Camera
 
