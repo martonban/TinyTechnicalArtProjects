@@ -23,13 +23,18 @@ Topic covered:
 ![Cover](Screenshots/3d_course_1.png)
 ![Cover](Screenshots/3d_course_2.png)
 
-## 01 - 2D Shaders Collection
-coming soon...
+## 01 - 2D Shaders Collection <Godot 4.2.1>
+WORK IN PROGRESS.....
 
 ## 02 - 3D Shaders Collection <Godot 4.2.1>
 These are my own developed 3D shaders in godot. In this project there is only one scene, where every shader I devloped is there.
 
+### Particle System
+
 ### Wet Stone Shader
-I created a simple stone shader. The developers have a control over the moisture on the stone surface. I get a PBR materiial from Polyhaven. After I applied on a model created in belnder I modified different parameters of the material based on some noise texture.  <br><br><br>
+I created a simple stone shader. The developers have a control over the moisture on the stone surface. I get a PBR materiial from Polyhaven. After I applied on a model created in belnder I modified different parameters of the material based on some noise texture. <br><br>
 **Scrennshots:**
 ![Cover](Screenshots/stone_shader_beta.png)
+
+## 03 - Lost In Random Recreation <Godot 4.2.1>
+I played the amazing Lost In Random. And I saw a pretty cool scene wich I want to recreate in godot. WORK IN PROGRESS.....
