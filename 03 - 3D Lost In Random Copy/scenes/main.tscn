@@ -1,11 +1,32 @@
-[gd_scene load_steps=7 format=3 uid="uid://bqqgyqafm7xwp"]
+[gd_scene load_steps=13 format=3 uid="uid://bqqgyqafm7xwp"]
 
 [ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://scenes/main-environment.tres" id="1_ahusb"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_onms2"]
+[ext_resource type="Shader" path="res://shaders/floor.gdshader" id="4_iuo6d"]
 [ext_resource type="Script" path="res://scripts/view.gd" id="5_bg0fr"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ldi3m"]
 size = Vector2(100, 100)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xvaoh"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2540q"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_xvaoh")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_h0y05"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uk8va"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_h0y05")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dxm8n"]
+render_priority = 0
+shader = ExtResource("4_iuo6d")
+shader_parameter/noise1_texture = SubResource("NoiseTexture2D_2540q")
+shader_parameter/noise2_texture = SubResource("NoiseTexture2D_uk8va")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_tvtbs"]
 data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
@@ -27,7 +48,7 @@ script = ExtResource("5_bg0fr")
 target = NodePath("../Player")
 
 [node name="Camera" type="Camera3D" parent="View"]
-transform = Transform3D(1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, -0.559214, -2.50472, 12.0722)
+transform = Transform3D(1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, -0.559213, -2.50472, 12.0722)
 current = true
 fov = 40.0
 
@@ -37,6 +58,7 @@ fov = 40.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0205927, -0.0203402, 0.0105009)
 mesh = SubResource("PlaneMesh_ldi3m")
 skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_dxm8n")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="World/MeshInstance3D"]
 
