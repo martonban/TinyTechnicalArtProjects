@@ -14,10 +14,10 @@ extends MeshInstance3D
 class Particle:
 	var p_pos: Vector2
 	var p_radius: float
+	var p_lifetime: float 
 	
-var particles: Array[Particle] = []
 var shader
-
+var particles: Array[Particle]
 
 func _ready():
 	shader = _2d_particles_cpu.get_active_material(0)
@@ -25,27 +25,23 @@ func _ready():
 		var p = Particle.new()
 		p.p_pos = source
 		p.p_radius = radius
+		p.p_lifetime = 1;
 		particles.append(p)
-	shader.set_shader_parameter("size", number_of_particals)
-	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+	
 func _process(delta):
-	var array_to_shader: Array[float] = [number_of_particals * 3] 
+	var array_to_shader: Array[float]
 	for n in number_of_particals:
-		particles[n].p_pos += Vector2(generate_random_float(), generate_random_float_x()) * 10 * delta
-		array_to_shader.append(particles[n].p_pos.y)
+		particles[n].p_pos.y += 0.001
+		particles[n].p_lifetime -= 0.01
 		array_to_shader.append(particles[n].p_pos.x)
+		array_to_shader.append(particles[n].p_pos.y)
 		array_to_shader.append(particles[n].p_radius)
-	
+		array_to_shader.append(particles[n].p_lifetime)
 	shader.set_shader_parameter("array", array_to_shader);
+	#array_to_shader.clear()
 
-func generate_random_float() -> float:
-	var min_value: float = 0.01
-	var max_value: float = 0.05
-	return randf_range(min_value, max_value)
-	
 func generate_random_float_x() -> float:
-	var min_value: float = -0.1
-	var max_value: float = 0.1
-	return randf_range(min_value, max_value)
+	var min_value: float = 0
+	var max_value: float = 0.05
+	return randf_range(min_value, max_value) / 5;

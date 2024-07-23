@@ -31,7 +31,7 @@ void fragment() {
 	// Calculate the final_values based on wet_pct
 	vec3 final_normal = mix(texture_normal, noise_texture, 0.1);
 	
-	// grayscale of the final color 
+	// grayscale of the final color d
 	vec3 final_color = texture_color.rgb / dark;
 	float final_roughness = texture_rough.r * noise_texture.r * wet_percentage;
 	

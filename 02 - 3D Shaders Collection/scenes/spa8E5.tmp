@@ -2,16 +2,16 @@
 
 [ext_resource type="Script" path="res://scripts/spatial_shaders.gd" id="1_db346"]
 [ext_resource type="PackedScene" uid="uid://twg0tri4g6hr" path="res://scenes/camera_controller.tscn" id="1_p4cbf"]
-[ext_resource type="Shader" path="res://shaders/raindrop_particle_shader.gdshader" id="3_tk3n5"]
+[ext_resource type="Shader" path="res://scenes/raindrop_particle_shader.gdshader" id="3_tk3n5"]
 [ext_resource type="Script" path="res://scripts/ParticleSystemCPU.gd" id="3_tsspp"]
 [ext_resource type="ArrayMesh" uid="uid://c68lxohu6s4cf" path="res://assets/rock/rock.obj" id="5_1wdmb"]
-[ext_resource type="Shader" path="res://shaders/material/wet_rock_shader.gdshader" id="6_y7imb"]
+[ext_resource type="Shader" path="res://scenes/wet_rock_shader.gdshader" id="6_y7imb"]
 [ext_resource type="Texture2D" uid="uid://cnqw1eynr2btb" path="res://assets/rock/lichen_rock_ao_2k.png" id="7_adse6"]
 [ext_resource type="Texture2D" uid="uid://b7wu2lshl76g7" path="res://assets/rock/lichen_rock_diff_2k.png" id="7_g6jtc"]
 [ext_resource type="Texture2D" uid="uid://eg3fwr86hxq6" path="res://assets/rock/lichen_rock_arm_2k.png" id="8_ker2v"]
 [ext_resource type="Texture2D" uid="uid://cloo2dxmwjcq6" path="res://assets/rock/lichen_rock_nor_gl_2k.png" id="8_wnr6v"]
 [ext_resource type="Texture2D" uid="uid://c7rmkim8rblfg" path="res://assets/rock/lichen_rock_rough_2k.png" id="9_i10q4"]
-[ext_resource type="Script" path="res://scripts/OmniLight3D.gd" id="12_t34sy"]
+[ext_resource type="Script" path="res://scenes/OmniLight3D.gd" id="12_t34sy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7jfiy"]
 
