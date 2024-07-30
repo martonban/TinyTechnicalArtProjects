@@ -29,7 +29,9 @@ WORK IN PROGRESS.....
 ## 02 - 3D Shaders Collection <Godot 4.2.1>
 These are my own developed 3D shaders in godot. In this project there is only one scene, where every shader I devloped is there.
 
-### Particle System
+### Particle System on CPU <Godot 4.2.1>
+
+Source: https://natureofcode.com/particles/
 
 ### Wet Stone Shader
 I created a simple stone shader. The developers have a control over the moisture on the stone surface. I get a PBR materiial from Polyhaven. After I applied on a model created in belnder I modified different parameters of the material based on some noise texture. <br><br>
