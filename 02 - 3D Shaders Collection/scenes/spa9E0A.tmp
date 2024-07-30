@@ -76,9 +76,6 @@ number_of_particals = 300
 source = Vector2(0.5, 0.5)
 radius = 0.05
 
-[node name="Timer" type="Timer" parent="2DParticlesCPU"]
-autostart = true
-
 [node name="Rock" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.292458, 0, -0.405547, 0, 0.5, 0, 0.405547, 0, 0.292458, -6.31864, 0.341146, -0.223391)
 mesh = ExtResource("5_1wdmb")
@@ -89,5 +86,3 @@ transform = Transform3D(-0.844309, 0, -0.535856, 0, 1, 0, 0.535856, 0, -0.844309
 light_color = Color(0.92549, 0.94902, 0.956863, 1)
 light_energy = 4.515
 script = ExtResource("12_t34sy")
-
-[connection signal="timeout" from="2DParticlesCPU/Timer" to="2DParticlesCPU" method="_on_timer_timeout"]
