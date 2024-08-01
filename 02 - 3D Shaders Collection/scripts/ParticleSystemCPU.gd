@@ -40,10 +40,13 @@ class ParticleSystem:
 		return particles.size()
 	
 	func update_particle_system():
+		var most_delete: Array[int]
 		for n in particles.size():
-			if(particles[n].p_lifetime <= 0):
-				particles.remove_at(n)
-
+			if(particles[n].p_lifetime <= 0.0):
+				most_delete.append(n)
+		for n in most_delete:
+			particles.remove_at(n)
+ 
 
 func _ready():
 	shader = _2d_particles_cpu.get_active_material(0)
@@ -61,11 +64,12 @@ func _process(delta):
 		array_to_shader.append(particle_system.particles[n].p_radius)
 		array_to_shader.append(particle_system.particles[n].p_lifetime)
 	shader.set_shader_parameter("array", array_to_shader);
+	shader.set_shader_parameter("size", particle_system.get_size());
 	particle_system.update_particle_system()
 	#array_to_shader.clear()
 
 
 func _on_timer_timeout():
-	var p = Particle.new(source, 0.01,  1)
+	var p = Particle.new(source, 0.01, 1)
 	particle_system.add_particle(p)
 	

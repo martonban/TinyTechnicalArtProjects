@@ -1,7 +1,7 @@
 shader_type spatial;
 
 uniform float[1200] array;
-uniform int size = 1200;
+uniform int size;
 
 float sdCircle(vec2 uv, vec2 offset, float radius ) {	
 	float x = uv.x - offset.x;
