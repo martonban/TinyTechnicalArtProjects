@@ -23,6 +23,8 @@ Topic covered:
 ![Cover](Screenshots/3d_course_1.png)
 ![Cover](Screenshots/3d_course_2.png)
 
+## 00 - ShaderCourse(GameDevTV) <Unity 2022.3.40f>
+
 ## 01 - 2D Shaders Collection <Godot 4.2.1>
 WORK IN PROGRESS.....
 
@@ -37,6 +39,3 @@ Source: https://natureofcode.com/particles/
 I created a simple stone shader. The developers have a control over the moisture on the stone surface. I get a PBR materiial from Polyhaven. After I applied on a model created in belnder I modified different parameters of the material based on some noise texture. <br><br>
 **Scrennshots:**
 ![Cover](Screenshots/stone_shader_beta.png)
-
-## 03 - Lost In Random Recreation <Godot 4.2.1>
-I played the amazing Lost In Random. And I saw a pretty cool scene wich I want to recreate in godot. WORK IN PROGRESS.....
