@@ -1,0 +1,97 @@
+[gd_scene load_steps=21 format=3 uid="uid://lg3n8vkn5qi4"]
+
+[ext_resource type="Script" path="res://scripts/spatial_shaders.gd" id="1_db346"]
+[ext_resource type="PackedScene" uid="uid://twg0tri4g6hr" path="res://scenes/camera_controller.tscn" id="1_p4cbf"]
+[ext_resource type="Shader" path="res://shaders/raindrop_particle_shader.gdshader" id="3_tk3n5"]
+[ext_resource type="Script" path="res://scripts/ParticleSystemCPU.gd" id="3_tsspp"]
+[ext_resource type="ArrayMesh" uid="uid://c68lxohu6s4cf" path="res://assets/rock/rock.obj" id="5_1wdmb"]
+[ext_resource type="Shader" path="res://shaders/material/wet_rock_shader.gdshader" id="6_y7imb"]
+[ext_resource type="Texture2D" uid="uid://cnqw1eynr2btb" path="res://assets/rock/lichen_rock_ao_2k.png" id="7_adse6"]
+[ext_resource type="Texture2D" uid="uid://b7wu2lshl76g7" path="res://assets/rock/lichen_rock_diff_2k.png" id="7_g6jtc"]
+[ext_resource type="Texture2D" uid="uid://eg3fwr86hxq6" path="res://assets/rock/lichen_rock_arm_2k.png" id="8_ker2v"]
+[ext_resource type="Texture2D" uid="uid://cloo2dxmwjcq6" path="res://assets/rock/lichen_rock_nor_gl_2k.png" id="8_wnr6v"]
+[ext_resource type="Texture2D" uid="uid://c7rmkim8rblfg" path="res://assets/rock/lichen_rock_rough_2k.png" id="9_i10q4"]
+[ext_resource type="Script" path="res://scripts/OmniLight3D.gd" id="12_t34sy"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7jfiy"]
+
+[sub_resource type="Sky" id="Sky_joj37"]
+sky_material = SubResource("ProceduralSkyMaterial_7jfiy")
+
+[sub_resource type="Environment" id="Environment_b0d0y"]
+background_mode = 2
+sky = SubResource("Sky_joj37")
+ssr_enabled = true
+sdfgi_enabled = true
+fog_light_energy = 0.0
+volumetric_fog_density = 0.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_t4tfq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g6ph0"]
+render_priority = 0
+shader = ExtResource("3_tk3n5")
+shader_parameter/array = null
+shader_parameter/size = 1200
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_upa3v"]
+noise_type = 3
+frequency = 0.0035
+fractal_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wva8f"]
+seamless = true
+as_normal_map = true
+bump_strength = 28.9
+noise = SubResource("FastNoiseLite_upa3v")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nnkac"]
+render_priority = 0
+shader = ExtResource("6_y7imb")
+shader_parameter/wet_percentage = 1.15
+shader_parameter/dark = 4.0
+shader_parameter/UV_mapping_scaler = 6.0
+shader_parameter/UV_offset = 6.31
+shader_parameter/color_texture = ExtResource("7_g6jtc")
+shader_parameter/normal_texture = ExtResource("8_wnr6v")
+shader_parameter/rough_texture = ExtResource("9_i10q4")
+shader_parameter/ao_map = ExtResource("7_adse6")
+shader_parameter/arm_map = ExtResource("8_ker2v")
+shader_parameter/noise_textue = SubResource("NoiseTexture2D_wva8f")
+
+[node name="SpatialShaders" type="Node3D"]
+script = ExtResource("1_db346")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_b0d0y")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.80536, 0.463107, -0.370038, 0, 0.624234, 0.781237, 0.592787, -0.629177, 0.502733, -5.05456, 3.71136, 4.38398)
+
+[node name="CameraController" parent="." instance=ExtResource("1_p4cbf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0776994, 0.079292, 1.07633)
+
+[node name="2DParticlesCPU" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.00819, 0, -0.286657)
+mesh = SubResource("QuadMesh_t4tfq")
+surface_material_override/0 = SubResource("ShaderMaterial_g6ph0")
+script = ExtResource("3_tsspp")
+number_of_particals = 300
+source = Vector2(0.5, 0.5)
+radius = 0.05
+
+[node name="Timer" type="Timer" parent="2DParticlesCPU"]
+autostart = true
+
+[node name="Rock" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.292458, 0, -0.405547, 0, 0.5, 0, 0.405547, 0, 0.292458, -6.31864, 0.341146, -0.223391)
+mesh = ExtResource("5_1wdmb")
+surface_material_override/0 = SubResource("ShaderMaterial_nnkac")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(-0.844309, 0, -0.535856, 0, 1, 0, 0.535856, 0, -0.844309, -4.02489, 0.601781, 1.04553)
+light_color = Color(0.92549, 0.94902, 0.956863, 1)
+light_energy = 4.515
+script = ExtResource("12_t34sy")
+
+[connection signal="timeout" from="2DParticlesCPU/Timer" to="2DParticlesCPU" method="_on_timer_timeout"]

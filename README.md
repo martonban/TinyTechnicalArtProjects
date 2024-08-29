@@ -23,19 +23,15 @@ Topic covered:
 ![Cover](Screenshots/3d_course_1.png)
 ![Cover](Screenshots/3d_course_2.png)
 
-## 00 - ShaderCourse(GameDevTV) <Unity 2022.3.40f>
+## 00 - ShaderGraphBasics <Unity 2022.3.40f>
+This the tutorial code of the BenCloward's tutorials.
 
-## 01 - 2D Shaders Collection <Godot 4.2.1>
-WORK IN PROGRESS.....
-
-## 02 - 3D Shaders Collection <Godot 4.2.1>
+## 01 - 3D Shaders Collection <Godot 4.2.1>
 These are my own developed 3D shaders in godot. In this project there is only one scene, where every shader I devloped is there.
-
-### Particle System on CPU <Godot 4.2.1>
-
-Source: https://natureofcode.com/particles/
 
 ### Wet Stone Shader
 I created a simple stone shader. The developers have a control over the moisture on the stone surface. I get a PBR materiial from Polyhaven. After I applied on a model created in belnder I modified different parameters of the material based on some noise texture. <br><br>
 **Scrennshots:**
 ![Cover](Screenshots/stone_shader_beta.png)
+
+### Procedural Mosaic Shader
