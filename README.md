@@ -35,3 +35,5 @@ I created a simple stone shader. The developers have a control over the moisture
 ![Cover](Screenshots/stone_shader_beta.png)
 
 ### Procedural Mosaic Shader
+This shader will able to make create mosaic shader procedurally based on the albedo(color) texture. If you are interested in a technical deep dive how I did it please check out [this wiki page](https://github.com/martonban/LittleTechnicalArtProjects/wiki/1-%E2%80%90-Procedural-Mosaic-Material)
+

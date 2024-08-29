@@ -15,6 +15,7 @@ group_uniforms Textures_Setting;
 	uniform sampler2D ao_map;
 	uniform sampler2D arm_map;
 	uniform sampler2D noise_textue;
+	uniform sampler2D height_map;
 group_uniforms;
 
 
@@ -34,6 +35,7 @@ void fragment() {
 	// grayscale of the final color d
 	vec3 final_color = texture_color.rgb / dark;
 	float final_roughness = texture_rough.r * noise_texture.r * wet_percentage;
+	
 	
 	ALBEDO =  final_color;
 	NORMAL_MAP = final_normal;

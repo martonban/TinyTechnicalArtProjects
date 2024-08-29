@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://lg3n8vkn5qi4"]
+[gd_scene load_steps=26 format=3 uid="uid://lg3n8vkn5qi4"]
 
 [ext_resource type="Script" path="res://scripts/spatial_shaders.gd" id="1_db346"]
 [ext_resource type="PackedScene" uid="uid://twg0tri4g6hr" path="res://scenes/camera_controller.tscn" id="1_p4cbf"]
@@ -11,7 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://eg3fwr86hxq6" path="res://assets/rock/lichen_rock_arm_2k.png" id="8_ker2v"]
 [ext_resource type="Texture2D" uid="uid://cloo2dxmwjcq6" path="res://assets/rock/lichen_rock_nor_gl_2k.png" id="8_wnr6v"]
 [ext_resource type="Texture2D" uid="uid://c7rmkim8rblfg" path="res://assets/rock/lichen_rock_rough_2k.png" id="9_i10q4"]
+[ext_resource type="Texture2D" uid="uid://cu7kt6asvtnhr" path="res://assets/rock/lichen_rock_disp_2k.png" id="10_5fc4m"]
 [ext_resource type="Script" path="res://scripts/OmniLight3D.gd" id="12_t34sy"]
+[ext_resource type="Shader" path="res://shaders/shader passes/edge_detection_pass.gdshader" id="14_d7m7m"]
+[ext_resource type="Texture2D" uid="uid://crvtk5p3ryb5b" path="res://assets/mosaic/Albedo_Test.png" id="15_wjqhf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7jfiy"]
 
@@ -58,6 +61,15 @@ shader_parameter/rough_texture = ExtResource("9_i10q4")
 shader_parameter/ao_map = ExtResource("7_adse6")
 shader_parameter/arm_map = ExtResource("8_ker2v")
 shader_parameter/noise_textue = SubResource("NoiseTexture2D_wva8f")
+shader_parameter/height_map = ExtResource("10_5fc4m")
+
+[sub_resource type="QuadMesh" id="QuadMesh_3yojc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wsusa"]
+render_priority = 0
+shader = ExtResource("14_d7m7m")
+shader_parameter/lod = 0.0
+shader_parameter/input_albedo = ExtResource("15_wjqhf")
 
 [node name="SpatialShaders" type="Node3D"]
 script = ExtResource("1_db346")
@@ -93,5 +105,10 @@ transform = Transform3D(-0.844309, 0, -0.535856, 0, 1, 0, 0.535856, 0, -0.844309
 light_color = Color(0.92549, 0.94902, 0.956863, 1)
 light_energy = 4.515
 script = ExtResource("12_t34sy")
+
+[node name="Mosaic" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.123323, 0.119179, 0.0806081)
+mesh = SubResource("QuadMesh_3yojc")
+surface_material_override/0 = SubResource("ShaderMaterial_wsusa")
 
 [connection signal="timeout" from="2DParticlesCPU/Timer" to="2DParticlesCPU" method="_on_timer_timeout"]

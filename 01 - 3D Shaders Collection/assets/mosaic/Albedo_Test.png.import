@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cu7kt6asvtnhr"
-path.s3tc="res://.godot/imported/lichen_rock_disp_2k.png-18b8c9371dad7af210a71c99235d35a7.s3tc.ctex"
+uid="uid://crvtk5p3ryb5b"
+path.s3tc="res://.godot/imported/Albedo_Test.png-ba140d5cda930a3a938ee694c1f510a7.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/rock/lichen_rock_disp_2k.png"
-dest_files=["res://.godot/imported/lichen_rock_disp_2k.png-18b8c9371dad7af210a71c99235d35a7.s3tc.ctex"]
+source_file="res://assets/mosaic/Albedo_Test.png"
+dest_files=["res://.godot/imported/Albedo_Test.png-ba140d5cda930a3a938ee694c1f510a7.s3tc.ctex"]
 
 [params]
 
