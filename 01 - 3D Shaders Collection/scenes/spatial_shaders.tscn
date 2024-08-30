@@ -68,7 +68,7 @@ shader_parameter/height_map = ExtResource("10_5fc4m")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wsusa"]
 render_priority = 0
 shader = ExtResource("14_d7m7m")
-shader_parameter/lod = 0.0
+shader_parameter/input_resolution = Vector2(2048, 2048)
 shader_parameter/input_albedo = ExtResource("15_wjqhf")
 
 [node name="SpatialShaders" type="Node3D"]
