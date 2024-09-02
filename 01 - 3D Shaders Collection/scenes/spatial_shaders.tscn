@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://lg3n8vkn5qi4"]
+[gd_scene load_steps=29 format=3 uid="uid://lg3n8vkn5qi4"]
 
 [ext_resource type="Script" path="res://scripts/spatial_shaders.gd" id="1_db346"]
 [ext_resource type="PackedScene" uid="uid://twg0tri4g6hr" path="res://scenes/camera_controller.tscn" id="1_p4cbf"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://scripts/OmniLight3D.gd" id="12_t34sy"]
 [ext_resource type="Shader" path="res://shaders/shader passes/edge_detection_pass.gdshader" id="14_d7m7m"]
 [ext_resource type="Texture2D" uid="uid://crvtk5p3ryb5b" path="res://assets/mosaic/Albedo_Test.png" id="15_wjqhf"]
+[ext_resource type="Shader" path="res://shaders/material/glass_shader_material.gdshader" id="16_7yx0a"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7jfiy"]
 
@@ -71,6 +72,12 @@ shader = ExtResource("14_d7m7m")
 shader_parameter/input_resolution = Vector2(2048, 2048)
 shader_parameter/input_albedo = ExtResource("15_wjqhf")
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_w3q3r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p54o5"]
+render_priority = 0
+shader = ExtResource("16_7yx0a")
+
 [node name="SpatialShaders" type="Node3D"]
 script = ExtResource("1_db346")
 
@@ -84,7 +91,7 @@ transform = Transform3D(0.80536, 0.463107, -0.370038, 0, 0.624234, 0.781237, 0.5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0776994, 0.079292, 1.07633)
 
 [node name="2DParticlesCPU" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.00819, 0, -0.286657)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.81716, 0.496576, -0.00447956)
 mesh = SubResource("QuadMesh_t4tfq")
 surface_material_override/0 = SubResource("ShaderMaterial_g6ph0")
 script = ExtResource("3_tsspp")
@@ -96,7 +103,7 @@ radius = 0.05
 autostart = true
 
 [node name="Rock" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.292458, 0, -0.405547, 0, 0.5, 0, 0.405547, 0, 0.292458, -6.31864, 0.341146, -0.223391)
+transform = Transform3D(0.292458, 0, -0.405547, 0, 0.5, 0, 0.405547, 0, 0.292458, -10.5653, 0.341146, -0.223391)
 mesh = ExtResource("5_1wdmb")
 surface_material_override/0 = SubResource("ShaderMaterial_nnkac")
 
@@ -107,8 +114,13 @@ light_energy = 4.515
 script = ExtResource("12_t34sy")
 
 [node name="Mosaic" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.123323, 0.119179, 0.0806081)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.66489, 0.505405, -0.00382373)
 mesh = SubResource("QuadMesh_3yojc")
 surface_material_override/0 = SubResource("ShaderMaterial_wsusa")
+
+[node name="Glass" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.041958, 0.0342707, -0.638088)
+mesh = SubResource("PlaneMesh_w3q3r")
+surface_material_override/0 = SubResource("ShaderMaterial_p54o5")
 
 [connection signal="timeout" from="2DParticlesCPU/Timer" to="2DParticlesCPU" method="_on_timer_timeout"]
