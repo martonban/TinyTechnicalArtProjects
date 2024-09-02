@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://lg3n8vkn5qi4"]
+[gd_scene load_steps=30 format=3 uid="uid://lg3n8vkn5qi4"]
 
 [ext_resource type="Script" path="res://scripts/spatial_shaders.gd" id="1_db346"]
 [ext_resource type="PackedScene" uid="uid://twg0tri4g6hr" path="res://scenes/camera_controller.tscn" id="1_p4cbf"]
@@ -12,10 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://cloo2dxmwjcq6" path="res://assets/rock/lichen_rock_nor_gl_2k.png" id="8_wnr6v"]
 [ext_resource type="Texture2D" uid="uid://c7rmkim8rblfg" path="res://assets/rock/lichen_rock_rough_2k.png" id="9_i10q4"]
 [ext_resource type="Texture2D" uid="uid://cu7kt6asvtnhr" path="res://assets/rock/lichen_rock_disp_2k.png" id="10_5fc4m"]
-[ext_resource type="Script" path="res://scripts/OmniLight3D.gd" id="12_t34sy"]
 [ext_resource type="Shader" path="res://shaders/shader passes/edge_detection_pass.gdshader" id="14_d7m7m"]
 [ext_resource type="Texture2D" uid="uid://crvtk5p3ryb5b" path="res://assets/mosaic/Albedo_Test.png" id="15_wjqhf"]
 [ext_resource type="Shader" path="res://shaders/material/glass_shader_material.gdshader" id="16_7yx0a"]
+[ext_resource type="Texture2D" uid="uid://bbkqhg3msr0mc" path="res://assets/glass/grayscale.png" id="17_mwafo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7jfiy"]
 
@@ -26,6 +26,8 @@ sky_material = SubResource("ProceduralSkyMaterial_7jfiy")
 background_mode = 2
 sky = SubResource("Sky_joj37")
 ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
 sdfgi_enabled = true
 fog_light_energy = 0.0
 volumetric_fog_density = 0.0
@@ -77,6 +79,10 @@ shader_parameter/input_albedo = ExtResource("15_wjqhf")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p54o5"]
 render_priority = 0
 shader = ExtResource("16_7yx0a")
+shader_parameter/darkener = 0.014
+shader_parameter/grey_scalle_texture = ExtResource("17_mwafo")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ow3gh"]
 
 [node name="SpatialShaders" type="Node3D"]
 script = ExtResource("1_db346")
@@ -85,7 +91,7 @@ script = ExtResource("1_db346")
 environment = SubResource("Environment_b0d0y")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.80536, 0.463107, -0.370038, 0, 0.624234, 0.781237, 0.592787, -0.629177, 0.502733, -5.05456, 3.71136, 4.38398)
+transform = Transform3D(0.82461, 0.441947, -0.35313, -3.09411e-08, 0.624234, 0.781237, 0.565701, -0.644216, 0.51475, -5.05456, 4.10543, 3.91482)
 
 [node name="CameraController" parent="." instance=ExtResource("1_p4cbf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0776994, 0.079292, 1.07633)
@@ -103,15 +109,9 @@ radius = 0.05
 autostart = true
 
 [node name="Rock" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.292458, 0, -0.405547, 0, 0.5, 0, 0.405547, 0, 0.292458, -10.5653, 0.341146, -0.223391)
+transform = Transform3D(0.316035, 0, -0.387455, 0, 0.5, 0, 0.387455, 0, 0.316035, 0.539734, 1.2848, -2.0505)
 mesh = ExtResource("5_1wdmb")
 surface_material_override/0 = SubResource("ShaderMaterial_nnkac")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(-0.844309, 0, -0.535856, 0, 1, 0, 0.535856, 0, -0.844309, -4.02489, 0.601781, 1.04553)
-light_color = Color(0.92549, 0.94902, 0.956863, 1)
-light_energy = 4.515
-script = ExtResource("12_t34sy")
 
 [node name="Mosaic" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.66489, 0.505405, -0.00382373)
@@ -119,8 +119,15 @@ mesh = SubResource("QuadMesh_3yojc")
 surface_material_override/0 = SubResource("ShaderMaterial_wsusa")
 
 [node name="Glass" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.041958, 0.0342707, -0.638088)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0558298, 1.06482, -0.638609)
 mesh = SubResource("PlaneMesh_w3q3r")
 surface_material_override/0 = SubResource("ShaderMaterial_p54o5")
+
+[node name="Ground" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.06924, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_ow3gh")
 
 [connection signal="timeout" from="2DParticlesCPU/Timer" to="2DParticlesCPU" method="_on_timer_timeout"]
