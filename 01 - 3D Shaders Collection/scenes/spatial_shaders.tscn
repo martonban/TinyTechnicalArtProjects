@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://lg3n8vkn5qi4"]
+[gd_scene load_steps=38 format=3 uid="uid://lg3n8vkn5qi4"]
 
 [ext_resource type="Script" path="res://scripts/spatial_shaders.gd" id="1_db346"]
 [ext_resource type="PackedScene" uid="uid://twg0tri4g6hr" path="res://scenes/camera_controller.tscn" id="1_p4cbf"]
@@ -15,16 +15,20 @@
 [ext_resource type="Shader" path="res://shaders/shader passes/edge_detection_pass.gdshader" id="14_d7m7m"]
 [ext_resource type="Texture2D" uid="uid://crvtk5p3ryb5b" path="res://assets/mosaic/Albedo_Test.png" id="15_wjqhf"]
 [ext_resource type="Shader" path="res://shaders/material/glass_shader_material.gdshader" id="16_7yx0a"]
+[ext_resource type="Texture2D" uid="uid://dm8iix7aicppb" path="res://assets/glass/inv_grayscale.png" id="16_napdl"]
 [ext_resource type="Texture2D" uid="uid://bbkqhg3msr0mc" path="res://assets/glass/grayscale.png" id="17_mwafo"]
+[ext_resource type="Shader" path="res://shaders/material/test_material.gdshader" id="18_7tybq"]
+[ext_resource type="Texture2D" uid="uid://b2medk0lc5cbu" path="res://assets/general/texture_01.png" id="18_d8tl6"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7jfiy"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d6bet"]
 
 [sub_resource type="Sky" id="Sky_joj37"]
-sky_material = SubResource("ProceduralSkyMaterial_7jfiy")
+sky_material = SubResource("ProceduralSkyMaterial_d6bet")
 
 [sub_resource type="Environment" id="Environment_b0d0y"]
 background_mode = 2
 sky = SubResource("Sky_joj37")
+tonemap_mode = 3
 ssr_enabled = true
 ssao_enabled = true
 ssil_enabled = true
@@ -74,15 +78,43 @@ shader = ExtResource("14_d7m7m")
 shader_parameter/input_resolution = Vector2(2048, 2048)
 shader_parameter/input_albedo = ExtResource("15_wjqhf")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_w3q3r"]
+[sub_resource type="QuadMesh" id="QuadMesh_t45vt"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7vlqx"]
+frequency = 0.0516
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gycyg"]
+seamless = true
+as_normal_map = true
+bump_strength = 2.2
+noise = SubResource("FastNoiseLite_7vlqx")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qg13t"]
+frequency = 0.0192
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yrf07"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.0
+noise = SubResource("FastNoiseLite_qg13t")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p54o5"]
 render_priority = 0
 shader = ExtResource("16_7yx0a")
-shader_parameter/darkener = 0.014
+shader_parameter/high_frequency_noise_texture = SubResource("NoiseTexture2D_gycyg")
+shader_parameter/low_frequency_noise_texture = SubResource("NoiseTexture2D_yrf07")
 shader_parameter/grey_scalle_texture = ExtResource("17_mwafo")
+shader_parameter/inv_grey_scalle_texture = ExtResource("16_napdl")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ow3gh"]
+size = Vector2(1, 1)
+subdivide_width = 10
+subdivide_depth = 10
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ivqhd"]
+render_priority = 0
+shader = ExtResource("18_7tybq")
+shader_parameter/tex = ExtResource("18_d8tl6")
 
 [node name="SpatialShaders" type="Node3D"]
 script = ExtResource("1_db346")
@@ -91,10 +123,11 @@ script = ExtResource("1_db346")
 environment = SubResource("Environment_b0d0y")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.82461, 0.441947, -0.35313, -3.09411e-08, 0.624234, 0.781237, 0.565701, -0.644216, 0.51475, -5.05456, 4.10543, 3.91482)
+transform = Transform3D(0.82461, 0.441947, -0.35313, -3.09411e-08, 0.624234, 0.781237, 0.565701, -0.644216, 0.51475, -4.47294, 4.10543, 2.76287)
+shadow_enabled = true
 
 [node name="CameraController" parent="." instance=ExtResource("1_p4cbf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0776994, 0.079292, 1.07633)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0776994, 0.42448, 1.07633)
 
 [node name="2DParticlesCPU" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.81716, 0.496576, -0.00447956)
@@ -109,25 +142,26 @@ radius = 0.05
 autostart = true
 
 [node name="Rock" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.316035, 0, -0.387455, 0, 0.5, 0, 0.387455, 0, 0.316035, 0.539734, 1.2848, -2.0505)
+transform = Transform3D(0.316035, 0, -0.387455, 0, 0.5, 0, 0.387455, 0, 0.316035, -1.75473, 0.522511, -1.64309)
 mesh = ExtResource("5_1wdmb")
 surface_material_override/0 = SubResource("ShaderMaterial_nnkac")
 
 [node name="Mosaic" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.66489, 0.505405, -0.00382373)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.00801, 0.505405, 0.00163695)
 mesh = SubResource("QuadMesh_3yojc")
 surface_material_override/0 = SubResource("ShaderMaterial_wsusa")
 
 [node name="Glass" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0558298, 1.06482, -0.638609)
-mesh = SubResource("PlaneMesh_w3q3r")
+transform = Transform3D(1, 0, 0, 0, 0.897428, 0.441161, 0, -0.441161, 0.897428, -1.71936, 0.605794, -0.63007)
+mesh = SubResource("QuadMesh_t45vt")
 surface_material_override/0 = SubResource("ShaderMaterial_p54o5")
 
 [node name="Ground" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.06924, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.00938654, 0.025218, -2.99509)
 mesh = SubResource("PlaneMesh_ow3gh")
+surface_material_override/0 = SubResource("ShaderMaterial_ivqhd")
 
 [connection signal="timeout" from="2DParticlesCPU/Timer" to="2DParticlesCPU" method="_on_timer_timeout"]
