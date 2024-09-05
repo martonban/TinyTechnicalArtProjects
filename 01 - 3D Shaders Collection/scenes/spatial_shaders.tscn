@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://lg3n8vkn5qi4"]
+[gd_scene load_steps=40 format=3 uid="uid://lg3n8vkn5qi4"]
 
 [ext_resource type="Script" path="res://scripts/spatial_shaders.gd" id="1_db346"]
 [ext_resource type="PackedScene" uid="uid://twg0tri4g6hr" path="res://scenes/camera_controller.tscn" id="1_p4cbf"]
@@ -17,8 +17,6 @@
 [ext_resource type="Shader" path="res://shaders/material/glass_shader_material.gdshader" id="16_7yx0a"]
 [ext_resource type="Texture2D" uid="uid://dm8iix7aicppb" path="res://assets/glass/inv_grayscale.png" id="16_napdl"]
 [ext_resource type="Texture2D" uid="uid://bbkqhg3msr0mc" path="res://assets/glass/grayscale.png" id="17_mwafo"]
-[ext_resource type="Shader" path="res://shaders/material/test_material.gdshader" id="18_7tybq"]
-[ext_resource type="Texture2D" uid="uid://b2medk0lc5cbu" path="res://assets/general/texture_01.png" id="18_d8tl6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d6bet"]
 
@@ -111,10 +109,18 @@ size = Vector2(1, 1)
 subdivide_width = 10
 subdivide_depth = 10
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ivqhd"]
-render_priority = 0
-shader = ExtResource("18_7tybq")
-shader_parameter/tex = ExtResource("18_d8tl6")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_065oi"]
+albedo_color = Color(0.509804, 0.509804, 0.509804, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3oct7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vrt71"]
+albedo_color = Color(0.313726, 0.6, 0.6, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7vp6f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_px84b"]
+albedo_color = Color(0.396078, 0.396078, 0.396078, 1)
 
 [node name="SpatialShaders" type="Node3D"]
 script = ExtResource("1_db346")
@@ -123,7 +129,7 @@ script = ExtResource("1_db346")
 environment = SubResource("Environment_b0d0y")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.82461, 0.441947, -0.35313, -3.09411e-08, 0.624234, 0.781237, 0.565701, -0.644216, 0.51475, -4.47294, 4.10543, 2.76287)
+transform = Transform3D(0.960152, -0.218338, 0.174459, -2.3225e-08, 0.624234, 0.781237, -0.279477, -0.750107, 0.59936, -4.47294, 4.10543, 2.76287)
 shadow_enabled = true
 
 [node name="CameraController" parent="." instance=ExtResource("1_p4cbf")]
@@ -142,7 +148,7 @@ radius = 0.05
 autostart = true
 
 [node name="Rock" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.330525, 0, -0.37517, 0, 0.5, 0, 0.37517, 0, 0.330525, -1.39748, 0.621966, -1.48648)
+transform = Transform3D(0.330525, 0, -0.37517, 0, 0.5, 0, 0.37517, 0, 0.330525, -8.57402, 0.621966, 1.04659)
 mesh = ExtResource("5_1wdmb")
 surface_material_override/0 = SubResource("ShaderMaterial_nnkac")
 
@@ -152,7 +158,7 @@ mesh = SubResource("QuadMesh_3yojc")
 surface_material_override/0 = SubResource("ShaderMaterial_wsusa")
 
 [node name="Glass" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.897428, 0.441161, 0, -0.441161, 0.897428, -1.17378, 0.605794, -0.63007)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17378, 0.545801, -0.63007)
 mesh = SubResource("QuadMesh_t45vt")
 surface_material_override/0 = SubResource("ShaderMaterial_p54o5")
 
@@ -160,8 +166,19 @@ surface_material_override/0 = SubResource("ShaderMaterial_p54o5")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.06924, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.00938654, 0.025218, -2.99509)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.00938654, 0.025218, -1.99509)
 mesh = SubResource("PlaneMesh_ow3gh")
-surface_material_override/0 = SubResource("ShaderMaterial_ivqhd")
+surface_material_override/0 = SubResource("StandardMaterial3D_065oi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.42948, 0, 0.256021, 0.00470051, 0.799865, -0.00788518, -0.255979, 0.0146879, 0.429408, -0.824269, 0.39582, -1.47825)
+mesh = SubResource("BoxMesh_3oct7")
+skeleton = NodePath("../Background_1")
+surface_material_override/0 = SubResource("StandardMaterial3D_vrt71")
+
+[node name="Background_1" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.399933, -0.00917992, 0, 0.00734393, 0.499916, -1.55123, 0.407952, -1.15857)
+mesh = SubResource("CylinderMesh_7vp6f")
+surface_material_override/0 = SubResource("StandardMaterial3D_px84b")
 
 [connection signal="timeout" from="2DParticlesCPU/Timer" to="2DParticlesCPU" method="_on_timer_timeout"]

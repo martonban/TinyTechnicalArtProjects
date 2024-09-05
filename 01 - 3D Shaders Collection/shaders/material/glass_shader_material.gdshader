@@ -22,8 +22,8 @@ void fragment() {
 	vec3 final_normal_map = mix(noise_low_freq.rgb, noise_high_freq.rgb, inv_grey_scalle.r);
 	
 	// ALBEDO
-	vec3 screen_albedo = texture(screen_texture, SCREEN_UV + 0.003 + (final_normal_map.r/90.0f)).rgb + 0.05f;
-	vec3 final_albedo = mix(screen_albedo, inv_grey_scalle.rgb, 0.05);
+	vec3 screen_albedo = texture(screen_texture, SCREEN_UV + 0.005 + (final_normal_map.r/90.0f)).rgb + 0.05f;
+	vec3 final_albedo = mix(screen_albedo, inv_grey_scalle.rgb, 0.09);
 	
 	// Final Results
 	ALBEDO = final_albedo;
