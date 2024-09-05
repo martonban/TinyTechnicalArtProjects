@@ -142,7 +142,7 @@ radius = 0.05
 autostart = true
 
 [node name="Rock" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.316035, 0, -0.387455, 0, 0.5, 0, 0.387455, 0, 0.316035, -1.75473, 0.522511, -1.64309)
+transform = Transform3D(0.330525, 0, -0.37517, 0, 0.5, 0, 0.37517, 0, 0.330525, -1.39748, 0.621966, -1.48648)
 mesh = ExtResource("5_1wdmb")
 surface_material_override/0 = SubResource("ShaderMaterial_nnkac")
 
@@ -152,7 +152,7 @@ mesh = SubResource("QuadMesh_3yojc")
 surface_material_override/0 = SubResource("ShaderMaterial_wsusa")
 
 [node name="Glass" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.897428, 0.441161, 0, -0.441161, 0.897428, -1.71936, 0.605794, -0.63007)
+transform = Transform3D(1, 0, 0, 0, 0.897428, 0.441161, 0, -0.441161, 0.897428, -1.17378, 0.605794, -0.63007)
 mesh = SubResource("QuadMesh_t45vt")
 surface_material_override/0 = SubResource("ShaderMaterial_p54o5")
 
