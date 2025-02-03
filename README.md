@@ -1,6 +1,6 @@
 ![Cover](TechnicalArtProjectsCover.png)
 
-# Techcnical Art Projects
+# [WIP] Techcnical Art Projects
 In this repository you can find different kind of techincal art projects. This is not the final form of these projects. This is just a prototype version of these shaders witch I am going to implement in my games, or in my own rendering engine.  
 
 # Getting started
