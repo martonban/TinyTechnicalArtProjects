@@ -1,5 +1,3 @@
-![Cover](TechnicalArtProjectsCover.png)
-
 # [WIP] Techcnical Art Projects
 ⚠️ WARNING! This repository is not yet finished. The descriptions and code found here are not complete.<br><br>
 
