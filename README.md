@@ -1,7 +1,5 @@
-# [WIP] Techcnical Art Projects
-⚠️ WARNING! This repository is not yet finished. The descriptions and code found here are not complete.<br><br>
-
-In this repository you can find different kind of techincal art projects. This is not the final form of these projects. This is just a prototype version of these shaders witch I am going to implement in my games, or in my own rendering engine.  
+# Techcnical Art Projects
+In this repository you can find different kind of techincal art projects. This is not the final form of these projects. This are just a prototype version of these shaders witch I am going to implement in my games/my own rendering engine or just having fun!
 
 # Getting started
 The projects are created mainly in Godot and Unity. In the catalog I'll annotate wich version do you need to run those projects.
@@ -29,7 +27,4 @@ This is a simple gaussian edge detection shader
 
 ### Simple Glass Shader
 ![Cover](Screenshots/glass_shader.png)
-
-### Procedural Mosaic Shader (WIP)
-This shader will able to make create mosaic shader procedurally based on the albedo(color) texture. If you are interested in a technical deep dive how I did it please check out [this wiki page](https://github.com/martonban/LittleTechnicalArtProjects/wiki/1-%E2%80%90-Procedural-Mosaic-Material)
 
