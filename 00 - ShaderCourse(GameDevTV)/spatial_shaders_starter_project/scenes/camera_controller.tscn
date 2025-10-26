@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://twg0tri4g6hr"]
-
-[ext_resource type="Script" path="res://scripts/camera_controller.gd" id="1_wkhed"]
-
-[node name="CameraController" type="Node3D"]
-script = ExtResource("1_wkhed")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-current = true
